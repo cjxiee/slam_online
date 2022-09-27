@@ -16,3 +16,6 @@
 [submodule "3rdparty/googletest"]
 	path = 3rdparty/googletest
 	url = https://github.com/google/googletest.git
+[submodule "ch5/rgbd/3rdparty/fmt"]
+	path = ch5/rgbd/3rdparty/fmt
+	url = https://github.com/fmtlib/fmt.git

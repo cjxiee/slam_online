@@ -10,6 +10,7 @@ int main(int argc, char **argv) {
   // 读取argv[1]指定的图像
   cv::Mat image;
   image = cv::imread(argv[1]); //cv::imread函数读取指定路径下的图像
+  cout<<"image size: "<<image.size<<endl;
 
   // 判断图像文件是否正确读取
   if (image.data == nullptr) { //数据不存在,可能是文件不存在
@@ -35,6 +36,12 @@ int main(int argc, char **argv) {
   for (size_t y = 0; y < image.rows; y++) {
     // 用cv::Mat::ptr获得图像的行指针
     unsigned char *row_ptr = image.ptr<unsigned char>(y);  // row_ptr是第y行的头指针
+    // if (y == 1 or y ==2){
+    //   cout<<"row ptr: "<<row_ptr<<endl;
+    //   cout<<"row ptr: "<<row_ptr[2 * image.channels()]<<endl;
+    //   cout<<"row ptr: "<<row_ptr[4 * image.channels()]<<endl;
+    //   // cout<<"&row ptr"<<&row_ptr[0 * image.channels()]<<endl;
+    // }
     for (size_t x = 0; x < image.cols; x++) {
       // 访问位于 x,y 处的像素
       unsigned char *data_ptr = &row_ptr[x * image.channels()]; // data_ptr 指向待访问的像素数据
@@ -59,7 +66,7 @@ int main(int argc, char **argv) {
   // 使用clone函数来拷贝数据
   cv::Mat image_clone = image.clone();
   image_clone(cv::Rect(0, 0, 100, 100)).setTo(255);
-  cv::imshow("image", image);
+  cv::imshow("image_", image);
   cv::imshow("image_clone", image_clone);
   cv::waitKey(0);
 
